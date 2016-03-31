@@ -2,10 +2,11 @@
 using System.Data.Entity;
 using IdentityServer3.EntityFramework;
 using WsFederationPlugin.EntityFramework.Entities;
+using WsFederationPlugin.EntityFramework.Interfaces;
 
 namespace WsFederationPlugin.EntityFramework
 {
-    public class RelyingPartyConfigurationDbContext : BaseDbContext
+    public class RelyingPartyConfigurationDbContext : BaseDbContext, IRelyingPartyConfigurationDbContext
     {
         public RelyingPartyConfigurationDbContext() : base(WsFedEfConstants.ConnectionName)
         {
@@ -19,6 +20,8 @@ namespace WsFederationPlugin.EntityFramework
             : base(connectionString, schema)
         {
         }
+
+        public DbSet<RelyingParty> RelyingParties { get; set; }
 
         protected override void ConfigureChildCollections()
         {
@@ -35,8 +38,6 @@ namespace WsFederationPlugin.EntityFramework
                 };
         }
 
-        public DbSet<RelyingParty> RelyingParties { get; set; }
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -45,6 +46,8 @@ namespace WsFederationPlugin.EntityFramework
                 .HasMany(x => x.ClaimMappings)
                 .WithRequired(x => x.RelyingParty)
                 .WillCascadeOnDelete();
+
+            modelBuilder.Entity<RelyingParty>().Property(x => x.EncryptingCertificate).IsOptional();
 
             modelBuilder.Entity<ClaimMap>().ToTable(WsFedEfConstants.TableNames.ClaimMap, Schema);
         }

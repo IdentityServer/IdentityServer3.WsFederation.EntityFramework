@@ -79,16 +79,19 @@
     <Compile Include="DbContexts\RelyingPartyConfigurationDbContext.cs" />
     <Compile Include="Entities\ClaimMap.cs" />
     <Compile Include="Entities\RelyingParty.cs" />
+    <Compile Include="Extensions\EntitiesMap.cs" />
+    <Compile Include="Extensions\IdentityServerServiceFactoryExtensions.cs" />
+    <Compile Include="Extensions\ModelsMap.cs" />
+    <Compile Include="Interfaces\IRelyingPartyConfigurationDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\RelyingPartyService.cs" />
     <Compile Include="WsFedEfConstants.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

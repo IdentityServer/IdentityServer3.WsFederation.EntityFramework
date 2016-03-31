@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WsFederationPlugin.EntityFr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WsFederationPlugin.EntityFramework.IntegrationTests", "WsFederationPlugin.EntityFramework.IntegrationTests\WsFederationPlugin.EntityFramework.IntegrationTests.csproj", "{BBBC0845-9E84-4C95-B17B-67255494C6C7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Host", "Host\Host.csproj", "{4DE8A80C-47E9-44A3-A475-039989F9AB5A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{BBBC0845-9E84-4C95-B17B-67255494C6C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBBC0845-9E84-4C95-B17B-67255494C6C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBBC0845-9E84-4C95-B17B-67255494C6C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DE8A80C-47E9-44A3-A475-039989F9AB5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DE8A80C-47E9-44A3-A475-039989F9AB5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DE8A80C-47E9-44A3-A475-039989F9AB5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DE8A80C-47E9-44A3-A475-039989F9AB5A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
