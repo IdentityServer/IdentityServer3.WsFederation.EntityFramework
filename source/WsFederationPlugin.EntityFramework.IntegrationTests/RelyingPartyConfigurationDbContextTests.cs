@@ -3,7 +3,6 @@ using System.Data.Entity;
 using System.IdentityModel.Tokens;
 using System.Linq;
 using System.Security.Claims;
-using System.Security.Cryptography.X509Certificates;
 using WsFederationPlugin.EntityFramework.Entities;
 using Xunit;
 
@@ -72,8 +71,6 @@ namespace WsFederationPlugin.EntityFramework.IntegrationTests
             Assert.True(relyingParty.SignatureAlgorithm == persistedRelyingParty.SignatureAlgorithm);
             Assert.True(relyingParty.TokenLifeTime == persistedRelyingParty.TokenLifeTime);
             Assert.True(relyingParty.TokenType == persistedRelyingParty.TokenType);
-
-            // TODO: EncryptingCertificate
         }
     }
 }
