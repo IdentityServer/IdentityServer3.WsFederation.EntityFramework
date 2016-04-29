@@ -13,11 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace WsFederationPlugin.EntityFramework.Entities
+namespace IdentityServer3.WsFederation.EntityFramework.Entities
 {
     public class RelyingParty
     {

@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 using System.Collections.Specialized;
 using System.Data.Entity;
 using IdentityServer3.EntityFramework;
-using WsFederationPlugin.EntityFramework.Entities;
-using WsFederationPlugin.EntityFramework.Interfaces;
+using IdentityServer3.WsFederation.EntityFramework.Entities;
 
-namespace WsFederationPlugin.EntityFramework
+namespace IdentityServer3.WsFederation.EntityFramework
 {
     public class RelyingPartyConfigurationDbContext : BaseDbContext, IRelyingPartyConfigurationDbContext
     {

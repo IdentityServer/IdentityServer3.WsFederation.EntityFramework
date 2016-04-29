@@ -3,7 +3,8 @@ using System.Data.Entity;
 using System.IdentityModel.Tokens;
 using System.Linq;
 using System.Security.Claims;
-using WsFederationPlugin.EntityFramework.Entities;
+using IdentityServer3.WsFederation.EntityFramework;
+using IdentityServer3.WsFederation.EntityFramework.Entities;
 using Xunit;
 
 namespace WsFederationPlugin.EntityFramework.IntegrationTests

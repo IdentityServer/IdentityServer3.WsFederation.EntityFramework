@@ -13,19 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 using System.Linq;
 using AutoMapper;
-using WsFederationPlugin.EntityFramework.Entities;
-using RelyingParty = IdentityServer3.WsFederation.Models.RelyingParty;
+using IdentityServer3.WsFederation.EntityFramework.Entities;
 
-namespace WsFederationPlugin.EntityFramework.Extensions
+namespace IdentityServer3.WsFederation.Models
 {
     public static class ModelsMap
     {
         static ModelsMap()
         {
             Mapper = new MapperConfiguration(config =>
-                config.CreateMap<RelyingParty, Entities.RelyingParty>(MemberList.Source)
+                config.CreateMap<RelyingParty, EntityFramework.Entities.RelyingParty>(MemberList.Source)
                     .ForMember(x => x.DefaultClaimTypeMappingPrefix,
                         opt => opt.MapFrom(src => src.DefaultClaimTypeMappingPrefix))
                     .ForMember(x => x.DigestAlgorithm,
@@ -55,11 +55,11 @@ namespace WsFederationPlugin.EntityFramework.Extensions
 
         public static IMapper Mapper { get; set; }
 
-        public static Entities.RelyingParty ToEntity(this RelyingParty relyingParty)
+        public static EntityFramework.Entities.RelyingParty ToEntity(this RelyingParty relyingParty)
         {
             if (relyingParty == null) return null;
 
-            return Mapper.Map<RelyingParty, Entities.RelyingParty>(relyingParty);
+            return Mapper.Map<RelyingParty, EntityFramework.Entities.RelyingParty>(relyingParty);
         }
     }
 }

@@ -13,10 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-using System.Data.Entity;
-using WsFederationPlugin.EntityFramework.Entities;
 
-namespace WsFederationPlugin.EntityFramework.Interfaces
+using System.Data.Entity;
+using IdentityServer3.WsFederation.EntityFramework.Entities;
+
+namespace IdentityServer3.WsFederation.EntityFramework
 {
     public interface IRelyingPartyConfigurationDbContext
     {

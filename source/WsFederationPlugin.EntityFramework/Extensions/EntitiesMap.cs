@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 using System;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using AutoMapper;
-using IdentityServer3.WsFederation.Models;
 
-namespace WsFederationPlugin.EntityFramework.Extensions
+namespace IdentityServer3.WsFederation.EntityFramework.Entities
 {
     public static class EntitiesMap
     {
@@ -29,7 +29,7 @@ namespace WsFederationPlugin.EntityFramework.Extensions
                 new MapperConfiguration(
                     config =>
                     {
-                        config.CreateMap<Entities.RelyingParty, RelyingParty>(MemberList.Destination)
+                        config.CreateMap<RelyingParty, Models.RelyingParty>(MemberList.Destination)
                             .ForMember(x => x.DefaultClaimTypeMappingPrefix,
                                 opt => opt.MapFrom(src => src.DefaultClaimTypeMappingPrefix))
                             .ForMember(x => x.DigestAlgorithm,
@@ -66,10 +66,10 @@ namespace WsFederationPlugin.EntityFramework.Extensions
 
         public static IMapper Mapper { get; set; }
 
-        public static RelyingParty ToModel(this Entities.RelyingParty relyingParty)
+        public static Models.RelyingParty ToModel(this RelyingParty relyingParty)
         {
             if (relyingParty == null) return null;
-            return Mapper.Map<Entities.RelyingParty, RelyingParty>(relyingParty);
+            return Mapper.Map<RelyingParty, Models.RelyingParty>(relyingParty);
         }
     }
 }

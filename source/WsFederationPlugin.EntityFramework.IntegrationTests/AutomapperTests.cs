@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.IdentityModel.Tokens;
 using System.Linq;
+using System.Reflection;
 using System.Security.Claims;
-using WsFederationPlugin.EntityFramework.Entities;
-using WsFederationPlugin.EntityFramework.Extensions;
+using IdentityServer3.WsFederation.EntityFramework;
+using IdentityServer3.WsFederation.EntityFramework.Entities;
+using IdentityServer3.WsFederation.Models;
 using Xunit;
+using RelyingParty = IdentityServer3.WsFederation.EntityFramework.Entities.RelyingParty;
 
 namespace WsFederationPlugin.EntityFramework.IntegrationTests
 {

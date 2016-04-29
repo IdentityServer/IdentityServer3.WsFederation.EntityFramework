@@ -13,9 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-namespace WsFederationPlugin.EntityFramework
+
+namespace IdentityServer3.WsFederation.EntityFramework
 {
-    class WsFedEfConstants
+    internal class WsFedEfConstants
     {
         public const string ConnectionName = "IdentityServer3WsFederation";
 

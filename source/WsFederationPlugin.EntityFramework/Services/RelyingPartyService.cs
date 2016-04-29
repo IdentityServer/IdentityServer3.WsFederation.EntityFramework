@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 using System;
 using System.Data.Entity;
 using System.Threading.Tasks;
-using IdentityServer3.WsFederation.Models;
 using IdentityServer3.WsFederation.Services;
-using WsFederationPlugin.EntityFramework.Extensions;
-using WsFederationPlugin.EntityFramework.Interfaces;
+using IdentityServer3.WsFederation.EntityFramework.Entities;
+using RelyingParty = IdentityServer3.WsFederation.Models.RelyingParty;
 
-namespace WsFederationPlugin.EntityFramework.Services
+namespace IdentityServer3.WsFederation.EntityFramework
 {
-    public class RelyingPartyService :IRelyingPartyService
+    public class RelyingPartyService : IRelyingPartyService
     {
         private readonly IRelyingPartyConfigurationDbContext context;
 

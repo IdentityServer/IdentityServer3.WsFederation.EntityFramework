@@ -13,15 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 using System;
 using IdentityServer3.Core.Configuration;
 using IdentityServer3.EntityFramework;
-using IdentityServer3.WsFederation.Configuration;
+using IdentityServer3.WsFederation.EntityFramework;
 using IdentityServer3.WsFederation.Services;
-using WsFederationPlugin.EntityFramework.Interfaces;
-using WsFederationPlugin.EntityFramework.Services;
 
-namespace WsFederationPlugin.EntityFramework.Extensions
+namespace IdentityServer3.WsFederation.Configuration
 {
     public static class WsFederationServiceFactoryExtensions
     {
@@ -31,7 +30,9 @@ namespace WsFederationPlugin.EntityFramework.Extensions
             if (factory == null) throw new ArgumentNullException("factory");
             if (options == null) throw new ArgumentNullException("options");
 
-            factory.Register(new Registration<IRelyingPartyConfigurationDbContext>(resolver => new RelyingPartyConfigurationDbContext(options.ConnectionString, options.Schema)));
+            factory.Register(
+                new Registration<IRelyingPartyConfigurationDbContext>(
+                    resolver => new RelyingPartyConfigurationDbContext(options.ConnectionString, options.Schema)));
             factory.RelyingPartyService = new Registration<IRelyingPartyService, RelyingPartyService>();
         }
     }

@@ -13,9 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 using System.ComponentModel.DataAnnotations;
 
-namespace WsFederationPlugin.EntityFramework.Entities
+namespace IdentityServer3.WsFederation.EntityFramework.Entities
 {
     public class ClaimMap
     {

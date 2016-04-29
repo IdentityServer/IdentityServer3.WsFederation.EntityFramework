@@ -4,12 +4,10 @@ using Host.Config;
 using IdentityServer3.Core.Configuration;
 using IdentityServer3.EntityFramework;
 using IdentityServer3.WsFederation.Configuration;
+using IdentityServer3.WsFederation.EntityFramework;
 using IdentityServer3.WsFederation.Models;
-using IdentityServer3.WsFederation.Services;
 using Owin;
 using Serilog;
-using WsFederationPlugin.EntityFramework;
-using WsFederationPlugin.EntityFramework.Extensions;
 
 namespace Host
 {
