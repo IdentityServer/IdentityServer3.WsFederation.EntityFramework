@@ -7,8 +7,8 @@
     <ProjectGuid>{14938F80-BA5C-4134-92A1-678F785F69E5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WsFederationPlugin.EntityFramework</RootNamespace>
-    <AssemblyName>WsFederationPlugin.EntityFramework</AssemblyName>
+    <RootNamespace>IdentityServer3.WsFederation.EntityFramework</RootNamespace>
+    <AssemblyName>IdentityServer3.WsFederation.EntityFramework</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -24,7 +24,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\..\build\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
