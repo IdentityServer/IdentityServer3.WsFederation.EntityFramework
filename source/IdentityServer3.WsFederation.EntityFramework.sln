@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WsFederationPlugin.EntityFramework", "WsFederationPlugin.EntityFramework\WsFederationPlugin.EntityFramework.csproj", "{14938F80-BA5C-4134-92A1-678F785F69E5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WsFederationPlugin.EntityFramework.IntegrationTests", "WsFederationPlugin.EntityFramework.IntegrationTests\WsFederationPlugin.EntityFramework.IntegrationTests.csproj", "{BBBC0845-9E84-4C95-B17B-67255494C6C7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Host", "Host\Host.csproj", "{4DE8A80C-47E9-44A3-A475-039989F9AB5A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WsFederationPlugin.EntityFramework.Tests", "WsFederationPlugin.EntityFramework.Tests\WsFederationPlugin.EntityFramework.Tests.csproj", "{3AE4FD1C-AA18-42F5-BC89-BB2D1C29C6B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{4DE8A80C-47E9-44A3-A475-039989F9AB5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DE8A80C-47E9-44A3-A475-039989F9AB5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4DE8A80C-47E9-44A3-A475-039989F9AB5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AE4FD1C-AA18-42F5-BC89-BB2D1C29C6B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AE4FD1C-AA18-42F5-BC89-BB2D1C29C6B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AE4FD1C-AA18-42F5-BC89-BB2D1C29C6B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AE4FD1C-AA18-42F5-BC89-BB2D1C29C6B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

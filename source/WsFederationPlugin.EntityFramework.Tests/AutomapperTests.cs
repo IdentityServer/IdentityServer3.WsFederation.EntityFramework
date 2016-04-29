@@ -1,21 +1,23 @@
 ﻿using System.Collections.Generic;
 using System.IdentityModel.Tokens;
 using System.Linq;
-using System.Reflection;
 using System.Security.Claims;
-using IdentityServer3.WsFederation.EntityFramework;
+using System.Security.Cryptography.X509Certificates;
 using IdentityServer3.WsFederation.EntityFramework.Entities;
 using IdentityServer3.WsFederation.Models;
+using WsFederationPlugin.EntityFramework.Tests.Certificates;
 using Xunit;
 using RelyingParty = IdentityServer3.WsFederation.EntityFramework.Entities.RelyingParty;
 
-namespace WsFederationPlugin.EntityFramework.IntegrationTests
+namespace WsFederationPlugin.EntityFramework.Tests
 {
     public class AutomapperTests
     {
         [Fact]
         public void AutomapperConfigurationIsValidToModel()
         {
+            var encryptingCertificate = Cert.LoadEncryptingCertificate();
+
             var relyingParty = new RelyingParty
             {
                 Realm = "urn:identityserver",
@@ -33,7 +35,8 @@ namespace WsFederationPlugin.EntityFramework.IntegrationTests
                 {
                     new ClaimMap {InboundClaim = "name", OutboundClaim = ClaimTypes.Name},
                     new ClaimMap {InboundClaim = "email", OutboundClaim = ClaimTypes.Email}
-                }
+                },
+                EncryptingCertificate = encryptingCertificate.RawData
             };
 
             var model = relyingParty.ToModel();
@@ -49,20 +52,24 @@ namespace WsFederationPlugin.EntityFramework.IntegrationTests
             Assert.True(model.DefaultClaimTypeMappingPrefix == relyingParty.DefaultClaimTypeMappingPrefix);
             Assert.True(model.SamlNameIdentifierFormat == relyingParty.SamlNameIdentifierFormat);
             Assert.True(model.DigestAlgorithm == relyingParty.DigestAlgorithm);
-            
+
             Assert.NotNull(model.ClaimMappings);
             Assert.True(model.ClaimMappings.Any());
             Assert.True(model.ClaimMappings.First(x => x.Key == "name").Value == ClaimTypes.Name);
 
-            // TODO: EncryptingCertificate
-            Assert.True(model.EncryptingCertificate == null);
-
+            Assert.NotNull(model.EncryptingCertificate);
+            Assert.True(model.EncryptingCertificate.Subject == encryptingCertificate.Subject);
+            Assert.True(model.EncryptingCertificate.Issuer == encryptingCertificate.Issuer);
+            Assert.True(model.EncryptingCertificate.Thumbprint == encryptingCertificate.Thumbprint);
+            
             EntitiesMap.Mapper.ConfigurationProvider.AssertConfigurationIsValid();
         }
 
         [Fact]
         public void AutomapperConfigurationIsValidToEntity()
         {
+            var encryptingCertificate = Cert.LoadEncryptingCertificate();
+
             var relyingParty = new IdentityServer3.WsFederation.Models.RelyingParty
             {
                 Realm = "urn:identityserver",
@@ -80,7 +87,8 @@ namespace WsFederationPlugin.EntityFramework.IntegrationTests
                 {
                     {"name", ClaimTypes.Name },
                     {"email", ClaimTypes.Email }
-                }
+                },
+                EncryptingCertificate = encryptingCertificate
             };
 
             var entity = relyingParty.ToEntity();
@@ -100,9 +108,13 @@ namespace WsFederationPlugin.EntityFramework.IntegrationTests
             Assert.NotNull(entity.ClaimMappings);
             Assert.True(entity.ClaimMappings.Any());
             Assert.True(entity.ClaimMappings.First(x => x.InboundClaim == "name").OutboundClaim == ClaimTypes.Name);
+            
+            Assert.NotNull(entity.EncryptingCertificate);
+            var loadedCertificate = new X509Certificate2(entity.EncryptingCertificate);
 
-            // TODO: EncryptingCertificate
-            Assert.True(entity.EncryptingCertificate == null);
+            Assert.True(loadedCertificate.Subject == encryptingCertificate.Subject);
+            Assert.True(loadedCertificate.Issuer == encryptingCertificate.Issuer);
+            Assert.True(loadedCertificate.Thumbprint == encryptingCertificate.Thumbprint);
 
             ModelsMap.Mapper.ConfigurationProvider.AssertConfigurationIsValid();
         }
