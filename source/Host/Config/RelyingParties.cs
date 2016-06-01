@@ -24,6 +24,10 @@ namespace Host.Config
                         {"sub", ClaimTypes.NameIdentifier},
                         {"given_name", ClaimTypes.Name},
                         {"email", ClaimTypes.Email}
+                    },
+                    PostLogoutRedirectUris = new List<string>
+                    {
+                        "https://web.local/idsrvrp/"
                     }
                 },
                 new RelyingParty
@@ -39,6 +43,10 @@ namespace Host.Config
                         {"name", ClaimTypes.Name},
                         {"given_name", ClaimTypes.GivenName},
                         {"email", ClaimTypes.Email}
+                    },
+                    PostLogoutRedirectUris = new List<string>
+                    {
+                        "http://localhost:10313/"
                     }
                 }
             };

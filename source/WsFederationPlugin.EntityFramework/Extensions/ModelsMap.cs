@@ -49,6 +49,7 @@ namespace IdentityServer3.WsFederation.Models
                                 src =>
                                     src.ClaimMappings.Select(
                                         x => new ClaimMap {InboundClaim = x.Key, OutboundClaim = x.Value})))
+                    .ForMember(x => x.PostLogoutRedirectUris, opt => opt.MapFrom(src => src.PostLogoutRedirectUris.Select(x => new RelyingPartyPostLogoutUri { Uri = x })))
                     .ForAllMembers(x => x.Condition(src => !src.IsSourceValueNull))
                 ).CreateMapper();
         }

@@ -38,6 +38,7 @@ namespace IdentityServer3.WsFederation.EntityFramework
         {
             var relyingParty = await context.RelyingParties
                 .Include(x => x.ClaimMappings)
+                .Include(x => x.PostLogoutRedirectUris)
                 .SingleOrDefaultAsync(x => x.Realm == realm);
 
             var model = relyingParty.ToModel();

@@ -62,9 +62,16 @@ namespace IdentityServer3.WsFederation.EntityFramework
                 .WithRequired(x => x.RelyingParty)
                 .WillCascadeOnDelete();
 
+            modelBuilder.Entity<RelyingParty>()
+                .HasMany(x => x.PostLogoutRedirectUris)
+                .WithRequired(x => x.RelyingParty)
+                .WillCascadeOnDelete();
+
             modelBuilder.Entity<RelyingParty>().Property(x => x.EncryptingCertificate).IsOptional();
 
             modelBuilder.Entity<ClaimMap>().ToTable(WsFedEfConstants.TableNames.ClaimMap, Schema);
+            modelBuilder.Entity<RelyingPartyPostLogoutUri>()
+                .ToTable(WsFedEfConstants.TableNames.RelyinPartyPostLogoutRedirectUris, Schema);
         }
     }
 }

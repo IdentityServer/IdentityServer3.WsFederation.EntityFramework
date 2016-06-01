@@ -24,6 +24,7 @@ namespace IdentityServer3.WsFederation.EntityFramework
         {
             public const string RelyingParty = "RelyingParties";
             public const string ClaimMap = "ClaimMappings";
+            public const string RelyinPartyPostLogoutRedirectUris = "RelyingPartyPostLogoutRedirectUris";
         }
     }
 }

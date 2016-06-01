@@ -59,7 +59,10 @@ namespace IdentityServer3.WsFederation.EntityFramework.Entities
                                             src.ClaimMappings.GroupBy(x => x.InboundClaim)
                                                 .ToDictionary(x => x.Key, x => x.First().OutboundClaim,
                                                     StringComparer.OrdinalIgnoreCase)
-                                        )).ForAllMembers(x => x.Condition(src => !src.IsSourceValueNull));
+                                        ))
+                            .ForMember(x => x.PostLogoutRedirectUris,
+                                opt => opt.MapFrom(src => src.PostLogoutRedirectUris.Select(x => x.Uri)))
+                            .ForAllMembers(x => x.Condition(src => !src.IsSourceValueNull));
                     })
                     .CreateMapper();
         }

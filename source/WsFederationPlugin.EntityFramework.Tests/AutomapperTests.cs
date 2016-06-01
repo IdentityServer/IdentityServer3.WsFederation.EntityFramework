@@ -36,7 +36,12 @@ namespace WsFederationPlugin.EntityFramework.Tests
                     new ClaimMap {InboundClaim = "name", OutboundClaim = ClaimTypes.Name},
                     new ClaimMap {InboundClaim = "email", OutboundClaim = ClaimTypes.Email}
                 },
-                EncryptingCertificate = encryptingCertificate.RawData
+                EncryptingCertificate = encryptingCertificate.RawData,
+                PostLogoutRedirectUris = new List<RelyingPartyPostLogoutUri>
+                {
+                    new RelyingPartyPostLogoutUri {Uri = "https://www.google.com/post"},
+                    new RelyingPartyPostLogoutUri {Uri = "https://www.google.com/post2"}
+                }
             };
 
             var model = relyingParty.ToModel();
@@ -62,6 +67,9 @@ namespace WsFederationPlugin.EntityFramework.Tests
             Assert.True(model.EncryptingCertificate.Issuer == encryptingCertificate.Issuer);
             Assert.True(model.EncryptingCertificate.Thumbprint == encryptingCertificate.Thumbprint);
             
+            Assert.NotNull(model.PostLogoutRedirectUris);
+            Assert.NotEmpty(model.PostLogoutRedirectUris);
+
             EntitiesMap.Mapper.ConfigurationProvider.AssertConfigurationIsValid();
         }
 
@@ -88,7 +96,12 @@ namespace WsFederationPlugin.EntityFramework.Tests
                     {"name", ClaimTypes.Name },
                     {"email", ClaimTypes.Email }
                 },
-                EncryptingCertificate = encryptingCertificate
+                EncryptingCertificate = encryptingCertificate,
+                PostLogoutRedirectUris = new List<string>
+                {
+                    "https://www.google.com/post",
+                    "https://www.google.com/post2"
+                }
             };
 
             var entity = relyingParty.ToEntity();
@@ -115,6 +128,9 @@ namespace WsFederationPlugin.EntityFramework.Tests
             Assert.True(loadedCertificate.Subject == encryptingCertificate.Subject);
             Assert.True(loadedCertificate.Issuer == encryptingCertificate.Issuer);
             Assert.True(loadedCertificate.Thumbprint == encryptingCertificate.Thumbprint);
+
+            Assert.NotNull(entity.PostLogoutRedirectUris);
+            Assert.NotEmpty(entity.PostLogoutRedirectUris);
 
             ModelsMap.Mapper.ConfigurationProvider.AssertConfigurationIsValid();
         }

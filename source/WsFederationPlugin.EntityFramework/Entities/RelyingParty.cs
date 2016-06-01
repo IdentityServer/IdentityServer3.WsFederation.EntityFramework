@@ -57,5 +57,7 @@ namespace IdentityServer3.WsFederation.EntityFramework.Entities
         public virtual string SignatureAlgorithm { get; set; }
 
         public virtual string DigestAlgorithm { get; set; }
+
+        public virtual ICollection<RelyingPartyPostLogoutUri> PostLogoutRedirectUris { get; set; }
     }
 }

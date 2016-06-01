@@ -79,6 +79,7 @@
     <Compile Include="DbContexts\RelyingPartyConfigurationDbContext.cs" />
     <Compile Include="Entities\ClaimMap.cs" />
     <Compile Include="Entities\RelyingParty.cs" />
+    <Compile Include="Entities\RelyingPartyPostLogoutUri.cs" />
     <Compile Include="Extensions\EntitiesMap.cs" />
     <Compile Include="Extensions\IdentityServerServiceFactoryExtensions.cs" />
     <Compile Include="Extensions\ModelsMap.cs" />
