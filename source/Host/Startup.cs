@@ -16,8 +16,9 @@ namespace Host
         public void Configuration(IAppBuilder app)
         {
             Log.Logger = new LoggerConfiguration()
-                .WriteTo.Trace(outputTemplate: "{Timestamp} [{Level}] ({Name}){NewLine} {Message}{NewLine}{Exception}")
-                .CreateLogger();
+               .MinimumLevel.Debug()
+               .WriteTo.File(@"c:\logs\ef.txt")
+               .CreateLogger();
 
             var factory = new IdentityServerServiceFactory()
                 .UseInMemoryUsers(Users.Get())

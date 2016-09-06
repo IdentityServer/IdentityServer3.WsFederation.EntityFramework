@@ -62,7 +62,7 @@ namespace IdentityServer3.WsFederation.EntityFramework.Entities
                                         ))
                             .ForMember(x => x.PostLogoutRedirectUris,
                                 opt => opt.MapFrom(src => src.PostLogoutRedirectUris.Select(x => x.Uri)))
-                            .ForAllMembers(x => x.Condition(src => !src.IsSourceValueNull));
+                            .ForAllMembers(x => x.Condition(src => src != null));
                     })
                     .CreateMapper();
         }
