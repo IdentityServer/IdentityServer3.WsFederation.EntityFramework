@@ -42,7 +42,8 @@ namespace Host
         {
             var efConfig = new EntityFrameworkServiceOptions
             {
-                ConnectionString = "IdSvr3Config"
+                ConnectionString = "IdSvr3Config",
+                //SynchronousReads = true
             };
             
             // pre-populate the test DB from the in-memory config

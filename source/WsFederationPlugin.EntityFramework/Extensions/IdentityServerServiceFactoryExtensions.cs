@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Linq;
 using IdentityServer3.Core.Configuration;
 using IdentityServer3.EntityFramework;
 using IdentityServer3.WsFederation.EntityFramework;
@@ -29,6 +30,11 @@ namespace IdentityServer3.WsFederation.Configuration
         {
             if (factory == null) throw new ArgumentNullException("factory");
             if (options == null) throw new ArgumentNullException("options");
+
+            if (options.SynchronousReads)
+            {
+                factory.Register(new Registration<EntityFrameworkServiceOptions>(options));
+            }
 
             factory.Register(
                 new Registration<IRelyingPartyConfigurationDbContext>(

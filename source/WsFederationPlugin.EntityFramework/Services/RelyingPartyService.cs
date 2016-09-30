@@ -16,7 +16,9 @@
 
 using System;
 using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
+using IdentityServer3.EntityFramework;
 using IdentityServer3.WsFederation.Services;
 using IdentityServer3.WsFederation.EntityFramework.Entities;
 using RelyingParty = IdentityServer3.WsFederation.Models.RelyingParty;
@@ -25,6 +27,7 @@ namespace IdentityServer3.WsFederation.EntityFramework
 {
     public class RelyingPartyService : IRelyingPartyService
     {
+        private readonly EntityFrameworkServiceOptions options;
         private readonly IRelyingPartyConfigurationDbContext context;
 
         public RelyingPartyService(IRelyingPartyConfigurationDbContext context)
@@ -34,12 +37,29 @@ namespace IdentityServer3.WsFederation.EntityFramework
             this.context = context;
         }
 
+        public RelyingPartyService(EntityFrameworkServiceOptions options, IRelyingPartyConfigurationDbContext context)
+        {
+            if (context == null) throw new ArgumentNullException("context");
+
+            this.options = options;
+            this.context = context;
+        }
+
         public async Task<RelyingParty> GetByRealmAsync(string realm)
         {
-            var relyingParty = await context.RelyingParties
+            Entities.RelyingParty relyingParty;
+            var queriable = context.RelyingParties
                 .Include(x => x.ClaimMappings)
-                .Include(x => x.PostLogoutRedirectUris)
-                .SingleOrDefaultAsync(x => x.Realm == realm);
+                .Include(x => x.PostLogoutRedirectUris);
+
+            if (options != null && options.SynchronousReads)
+            {
+                relyingParty = queriable.SingleOrDefault(x => x.Realm == realm);
+            }
+            else
+            {
+                relyingParty = await queriable.SingleOrDefaultAsync(x => x.Realm == realm);
+            }
 
             var model = relyingParty.ToModel();
 
