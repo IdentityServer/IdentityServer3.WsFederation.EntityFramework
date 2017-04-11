@@ -134,5 +134,14 @@ namespace WsFederationPlugin.EntityFramework.Tests
 
             ModelsMap.Mapper.ConfigurationProvider.AssertConfigurationIsValid();
         }
+
+        [Fact]
+        public void ToEntity_WhenEncryptionCertificateIsNull_ExpectNullEncryptionCertificate()
+        {
+            var model = new IdentityServer3.WsFederation.Models.RelyingParty();
+            var entity = model.ToEntity();
+
+            Assert.Null(entity.EncryptingCertificate);
+        }
     }
 }
